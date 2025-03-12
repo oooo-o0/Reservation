@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>施設利用予約</title>
+    <style>
+      .error {
+        color: #f00;
+        margin-bottom: 0;
+      }
+      .error + p {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>施設利用予約</h1>
+    <form action="" method="post" th:object="${bookingFormItem}">
+      <p class="error" th:errors="*{name}"></p>
+      <p>
+        代表者氏名:
+        <input type="text" th:field="*{name}" />
+      </p>
+      <p class="error" th:errors="*{email}"></p>
+      <p>
+        メールアドレス:
+        <input type="text" th:field="*{email}" />
+      </p>
+      <p class="error" th:errors="*{number}"></p>
+      <p>
+        利用人数:
+        <input type="text" th:field="*{number}" />
+      </p>
+      <p>
+        利用する部屋:
+        <select th:field="*{roomType.id}">
+          <option th:each="type : ${roomTypeList}" th:value="${type.id}" th:text="|${type.name} (${type.memo})|"></option>
+        </select>
+      </p>
+      <p class="error" th:errors="*{date}"></p>
+      <p>
+        利用予定日:
+        <input type="date" th:field="*{date}" />
+      </p>
+      <p class="error" th:errors="*{time}"></p>
+      <p>
+		利用時間帯: 
+		  <input type="checkbox" th:filed="*{time}" th:value="1" /> 10:00~12:00 
+		  <input type="checkbox" th:filed="*{time}" th:value="2" /> 12:00~14:00 
+		  <input type="checkbox" th:filed="*{time}" th:value="3" /> 14:00~16:00 
+		  <input type="checkbox" th:filed="*{time}" th:value="4" /> 16:00~18:00 
+		  <input type="checkbox" th:filed="*{time}" th:value="5" /> 18:00~20:00</p>
+      <p>
+		 駐車場: 
+		  <input type="radio" th:filed="*{parking}" value="1" />利用する 
+		  <input type="radio" th:filed="*{parking}" value="2" />利用しない
+	  </p>
+      <p class="error" th:errors="*{agreement}"></p>
+      <p><input type="checkbox" th:field="*{agreement}" />施設利用規約へ同意する</p>
+      <p><input type="submit" /></p>
+    </form>
+  </body>
+</html>
