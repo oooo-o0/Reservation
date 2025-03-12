@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>会員登録</title>
+    <style>
+      .error {
+        color: #f00;
+        margin-bottom: 0;
+      }
+      .error + p {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>会員登録</h1>
+    <form action="" method="post" th:object="${member}">
+      <p class="error" th:errors="*{name}"></p>
+      <p>
+        氏名:
+        <input type="text" th:field="*{name}" />
+      </p>
+      <p class="error" th:errors="*{email}"></p>
+
+      <p>
+        メールアドレス:
+        <input type="text" th:field="*{email}" />
+      </p>
+      <p class="error" th:errors="*{emailConf}"></p>
+      <p>
+        メールアドレス(確認用):
+        <input type="text" th:field="*{emailConf}" />
+      </p>
+      <p class="error" th:errors="*{password}"></p>
+      <p>
+        パスワード:
+        <input type="password" th:field="*{password}" />
+      </p>
+      <p><input type="submit" /></p>
+    </form>
+  </body>
+</html>
