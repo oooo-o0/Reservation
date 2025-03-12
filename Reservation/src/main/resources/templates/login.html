@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ログイン</title>
+    <style>
+      .error {
+        color: #f00;
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ログイン</h1>
+    <th:block th:object="${loginMember}">
+      <div th:if="${#fields.hasAnyErrors()}">
+        <p class="error" th:errors="*{email}"></p>
+        <p class="error" th:errors="*{password}"></p>
+        <p class="error" th:each="error : ${#fields.globalErrors()}" th:text="${error}"></p>
+      </div>
+    </th:block>
+
+    <form action="" method="post" th:object="${loginMember}">
+      <p>
+        ログインID（メールアドレス）:
+        <input type="text" th:field="*{email}" />
+      </p>
+      <p>
+        パスワード:
+        <input type="password" th:field="*{password}" />
+      </p>
+      <p><input type="submit" /></p>
+    </form>
+  </body>
+</html>
